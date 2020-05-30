@@ -1,0 +1,48 @@
+<div class="container-fluid" id="homemain" ng-controller="homecontroller">
+
+  <div class="container">
+    <div class="row">
+         <div class="panel panel-default col-sm-6 col-sm-offset-3" id="postpan" ng-repeat="post in searchposts track by $index">
+           <div class="panel-heading row">
+            <div class="col-sm-2">
+                <h1 id="folname">{{semail}}</h1>
+            </div>
+            </div>
+           <div class="panel-body">
+           <textarea class="form-control">{{post.uploadPostContent}}</textarea>
+           </div>
+        <div class="panel-footer row">
+        
+           <div class="col-sm-12 col-xs-10">
+            <button class="btn btn-primary btn-block" ng-click="sendLikeDetails(email,post.likeCount,semail,post._id,$index)">Like{{post.likeCount}} <span class="glyphicon glyphicon-thumbs-up"></span></button>
+            </div>
+<!--            <div class="col-sm-6 col-xs-7">
+            <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#comment">Comment <span class="glyphicon glyphicon-comment"></span></button>-->
+        
+           <br/>
+            
+
+            
+         
+            <div id="comment">
+                <div class="row" ng-repeat="com in post.comments">
+                 <p class="col-sm-1" style="margin-top:10px;font-weight:bold;">{{com.email}}</p>
+                <textarea id="textbox" class="col-sm-7 col-sm-offset-2 col-xs-8 col-xs-offset-1 ">{{com.content}}</textarea>
+                </div>
+                  <div class="row">
+                <p class="col-sm-1" style="margin-top:10px;font-weight:bold;">{{email}}</p>
+                <textarea id="textbox" class="col-sm-7 col-sm-offset-2 col-xs-8 col-xs-offset-1 " ng-model="comment"></textarea>
+            
+                 <button class="btn btn-primary col-sm-2" ng-click="sendCommentDetails(email,comment,$index,semail,post._id)">Send</button>
+
+                </div>
+            </div> 
+             </div>
+          </div>        
+        
+        </div>
+        
+    </div>
+    
+  </div>
+

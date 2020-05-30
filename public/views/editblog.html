@@ -1,0 +1,32 @@
+<div class="container-fluid" id="homemain">
+ <div class="alert alert-danger col-sm-4 col-sm-offset-4" ng-show="errorMsg">
+           <center>{{errorMsg}}</center>
+     </div>
+     <div class="alert alert-success col-sm-4 col-sm-offset-4" ng-show="successMsg">
+         <center>{{successMsg}}</center>
+     </div>
+<br/>
+ <div class="row">
+<div class="well col-sm-8 col-sm-offset-2" id="createblg">
+<center><h1>Edit Blog</h1></center>
+  <form class="form-horizontal"> 
+ <div class="form-group form-group-lg">
+  <label class="control-label" for="title">Title: </label>
+  <input type="text" class="form-control" id="title" ng-model="blog.title">
+ 
+</div>
+<br/>
+<div class="form-group form-group-lg">
+  <label class="control-label" for="content">Content:</label>
+    <textarea class="form-control" id="content" ng-model="blog.uploadPostContent"></textarea>
+  
+</div>
+</form>
+<br/>
+
+<div class="row">
+<button class=" col-sm-2 col-sm-offset-8 col-xs-5 col-xs-offset-3" ng-click="updateBlog()">Update</button>
+ </div>
+</div>
+ </div>
+</div>

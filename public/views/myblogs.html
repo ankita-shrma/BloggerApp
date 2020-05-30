@@ -1,0 +1,41 @@
+<div class="container-fluid" id="homemain">
+ <center><div class="alert alert-danger" ng-show="errorMsg">
+           <center>{{errorMsg}}</center>
+     </div>
+</center>
+ <center><div class="alert alert-success" ng-show="successMsg">
+         <center>{{successMsg}}</center>
+     </div>
+</center>
+<br/>
+  <div class="row" ng-repeat="post in myblogs">
+    <div class="well col-sm-8 col-sm-offset-2" id="blog" >
+        <div style="float:right;"><a ng-click="goToEdit(post)"><h4>Edit <span class="glyphicon glyphicon-edit"></span></h4></a></div>
+
+     <div class="row well" id="blog">
+      <div class="col-sm-2"><h4>Blog By:</h4></div>
+      <div class="col-sm-8"><h4>{{firstname}} {{lastname}}</h4><h4>({{email}})</h4></div>
+     </div>
+    <div class="row" id="blgtitle">
+        <div class="col-sm-2"><h3>Title:</h3></div>
+      <div class="col-sm-10"><h3>{{post.title}}</h3></div>
+     </div>
+    <div class="row" >
+     <div class="col-sm-10 col-sm-offset-1" id="blgcontent"><p>{{post.uploadPostContent}}</p></div>
+    </div>
+  <!--  <div class="row " id="blgbtn">
+     <div class="col-sm-3 col-xs-4">
+            <button  ng-click="incLike(post._id,user.email,post.likes)">Like <span class="glyphicon glyphicon-thumbs-up"></span></button>
+      </div>
+     <div class="col-sm-4 col-xs-4">
+            <button  ng-click="incComment(post._id,user.email)" data-toggle="collapse" data-target="#comment">Comment <span class="glyphicon glyphicon-comment"></span></button>
+     </div>
+     </div>-->
+    <div class="row">
+        <div class="col-sm-2"><h4>{{post.likeCount}} likes</h4></div>
+          <div class="col-sm-3"><h4>{{post.countComment}} comments</h4></div>
+        <div  style="float:right;"><a ng-click="deletePost(post._id,email)"><h4>Delete <span class="glyphicon glyphicon-trash"></span></h4></a></div>
+        </div>
+    </div>
+  </div>
+</div>

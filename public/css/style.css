@@ -1,0 +1,165 @@
+
+#loginpan{margin-top:5%;
+          }
+/*#main{background-color:white;}*/
+h1.serif {
+          font-family: "Times New Roman", Times, serif;
+          font-weight:bold;
+         }
+#logform{margin-top:20px;}
+/*#sign{height:100%;}*/
+#frgtpan{margin-top:100px;}
+#cpswd{margin-top:30px;}
+#homenav p{color:crimson;
+           font-weight:bold;}
+#homenav a{color:white;
+           font-size:16px;}
+#homenav a:hover{color:crimson;
+                }
+.activeState{
+             color:crimson;
+            }
+
+#homemain{background-color:white;
+         
+         }
+#blog{background-color:black;
+      color:white;}
+/*#blgtitle{border-top:2px solid crimson;
+          }*/
+#blgtitle h3{font-weight: bold;}
+#blgcontent{border-top:2px solid crimson;
+            padding:20px;
+            border-bottom:2px solid crimson;
+            background-color: white;
+            color:black;}
+#blgbtn{padding:10px;
+        
+        }
+#blgbtn button{
+    background-color:crimson;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+/*.likecolor
+{
+  background-color:crimson;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.dislikecolor
+{
+  background-color: white;
+  color: black;
+  border: 2px solid crimson;  
+}*/
+
+#blgbtn button:hover{background-color: white;
+  color: black;
+  border: 2px solid crimson;}
+#createblg{
+             background-color:black;
+      color:white;
+    padding:40px;
+}
+#createblg button{
+     background-color:crimson;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#createblg button:hover{background-color: white;
+  color: black;
+  border: 2px solid crimson;}
+
+/*@media screen  and (min-width: 480px)
+{
+    #tog{display:none;}
+       #signup{ border-left:1px solid grey;
+                display:block;
+               
+              }
+
+    
+    
+}*/
+/*
+#comment{margin-top:20px;
+         }
+#comimg{
+
+        }
+#commenttext{ width:90%;
+              margin-left:40px;
+           }
+#name{font-weight:bold;}
+#homemain{padding:10px;}
+#search{margin-top:10px;}
+a{text-decoration:none;}
+ #image{width:50px;
+           height:50px;
+         margin-top:10px;
+    }
+
+#log{margin-top:30px;
+     
+     }
+
+#new{margin-top:30px;
+     
+     
+    }
+@media screen  and (max-width: 480px)
+{
+    #logo{width:30px;
+          height:30px;}
+    #name{font-size:15px;
+          }
+    #email{height:20px;}
+    #search{height:7px;}
+    .glyphicon-search{height:9px;}
+    #header{padding-left:10px;}
+   
+    #new{font-size:12px;}
+    #folname{font-size:20px;}
+       #blog{font-size:20px;}
+    #pic{width:30px;
+        height:30px;}
+}
+#header{background-color:black;
+        color:crimson;}
+#header a{color:white;}
+#header a:hover{color:crimson;
+                text-decoration:none;}
+#postpan{margin-top:60px;}*/
+/*#pic{float:left;
+     width:40px;
+     height:40px;
+}*/
+/*
+#text{float:left;
+        
+         }
+#textbox{box-sizing: border-box;
+         border: none;
+    height:37px;
+     padding-top:15px;
+        border-bottom:2px solid black;
+        
+       background-color:transparent;
+      }
+*/

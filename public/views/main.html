@@ -1,0 +1,39 @@
+<html ng-app="blogapp">
+   <head>
+     <title>blogger.com</title>
+     <meta charset="utf-8">
+     <meta name="viewport"content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="css/style.css">
+     <script src="script/angular.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+     <script src="script/blog.js"></script>
+     <script src="script/routes/route.js"></script>
+  
+    <script src="script/services/appservice.js"></script>
+     <script src="script/controllers/signupcontroller.js"></script>
+    <script src="script/controllers/logincontroller.js"></script>
+    <script src="script/controllers/frgtpswdcontroller.js"></script>
+    <script src="script/controllers/homecontroller.js"></script>
+    <script src="script/controllers/createblogcontroller.js"></script>
+   <script src="script/controllers/myblogscontroller.js"></script>
+   <script src="script/controllers/editblogcontroller.js"></script>
+    <script src="script/controllers/allblogscontroller.js"></script>
+    
+   </head>
+   <body style="background-color:white;
+                overflow-x:hidden;
+                "> 
+    <!-- <div id="main">-->
+       
+     <!-- <div class="alert alert-danger alert-dismissable col-sm-4 col-sm-offset-4" ng-show="show">
+       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{message}}
+</div>-->
+      <ui-view></ui-view>
+       <!--</div>-->
+   </body>
+</html>
+    
