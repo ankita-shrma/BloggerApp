@@ -48,19 +48,7 @@ blgapp.controller('signupcont',function($scope,registerToServer,$state){
                         $scope.errorMsg="Password do not match please re-write";
                    }
                     else
-                    { /*var promise=registerToServer.postSignupObject(user);
-                       promise.then(function(object)
-                                    {console.log("promise object"+object);
-                                     $scope.token=object.token; 
-                                     $rootScope.message="Successfully signup";
-                                      $rootScope.show=true; 
-                                      
-                                      
-                                     },function()
-                                    { $rootScope.message="signup unsuccessfull please enter correct details";
-                                         $rootScope.show=true; 
-                                    }
-                                     );*/
+                    { 
                         registerToServer.postSignupObject($scope.user).then(function(data)
                             {
                               if(data.data.success)

@@ -20,30 +20,7 @@ mongoose.connection.once('open',function()
                                console.log('connection error',error);
                               });
 
-/*app.post('/signup',function(req,res)
-         {
-             console.log("in server side:",req.body);
-          var newcontact= new blogmodel();
-               newcontact.email=req.body.email;
-                newcontact.password=req.body.password;
-              newcontact.userDetail.firstname=req.body.firstname;
-                newcontact.userDetail.lastname=req.body.lastname;
-                 newcontact.userDetail.gender=req.body.gender;
-              console.log(newcontact);
-             newcontact.save(req.body,function(err,docs)
-                             {
-                 
-                               if(err)
-                               {
-                                  res.send("email already exists"); 
-                               }
-                               else
-                               {    
-                                   res.send("user created");
-                                   res.json(docs);
-                               }
-                              });
-          });*/
+
 app.get("*",function(req,res)
        {
           res.sendFile(path.join(__dirname+'/public/views/main.html'));

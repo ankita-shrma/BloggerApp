@@ -16,7 +16,9 @@ const blogSchema= new Schema({
                                                  }],
                                        likes:[{email:String}],
                                        likeCount:Number,
-                                       countComment:Number
+                                       countComment:Number,
+                                       likeBtnText:String,
+                                       date:Date
                                      }
                                      ],
                               userDetail:{firstname:{type:String,required:true},

@@ -1,4 +1,4 @@
-blgapp.controller('myblogscont',function($scope,$state,loginToServer,getAllPosts,retrieveBlogToEdit)
+blgapp.controller('myblogscont',function($scope,$state,loginToServer,getAllPosts)
 {
        
              $scope.successMsg=false;
@@ -32,7 +32,7 @@ blgapp.controller('myblogscont',function($scope,$state,loginToServer,getAllPosts
           reload();
             $scope.goToEdit=function(post)
             {
-                retrieveBlogToEdit.sendBlogToEdit(post);
+               // retrieveBlogToEdit.sendBlogToEdit(post);
                 $state.go('home.editblog',{blog:post});
                 
             }
@@ -54,7 +54,40 @@ blgapp.controller('myblogscont',function($scope,$state,loginToServer,getAllPosts
                                                                }
                                                            });  
              }                             
-                     
+             $scope.sendLikesInfoToModal=function(id,count)
+            {
+              $scope.lcount=count;
+              getAllPosts.getLikesInfo(id).then(function(data)
+                                        {
+                                            
+                                           $scope.reqLikePosts=data.data[0].posts;
+                                            angular.forEach($scope.reqLikePosts,function(elem,key)
+                                            {
+                                              if(elem._id==id)
+                                              {
+                                                $scope.likes=elem.likes;
+                                              }
+                                            });
+                                            console.log("likeinfo:"+ $scope.likes);   
+                          
+                                        });
+            } 
+            $scope.sendCommentsInfoToModal=function(id,count)
+            {
+              $scope.comCount=count;
+              getAllPosts.getCommentsInfo(id).then(function(data)
+                                        {
+                                             $scope.reqPosts=data.data[0].posts;
+                                            angular.forEach($scope.reqPosts,function(elem,key)
+                                            {
+                                              if(elem._id==id)
+                                              {
+                                                $scope.comments=elem.comments;
+                                              }
+                                            });
+                                            console.log("comments info:"+$scope.comments);
+                                        });
+            }                  
                                                 
                  
 });

@@ -1,26 +1,4 @@
-/*blgapp.factory("registerToServer",function($http,$q)
-              {return{
-                postSignupObject:function(user)
-                 { var object;
-                  var data={"data":user};
-                  console.log(data);
-                  var defered=$q.defer();
-                  $http.post('/signup',data)
-                  .success(function(data)
-                    {object=data;
-                     console.log("object is: ",object);
-                     defered.resolve(object);
-                    })
-                 .error(function(err)
-                    {defered.reject('no data found');
-                      
-                    });
-                   return defered.promise;
-                  }
-                 }
-           
-             });
-             \*/
+
 blgapp.factory("registerToServer",function($http)
               { var registerFactory={};
                registerFactory.postSignupObject=function(user)
@@ -90,6 +68,18 @@ blgapp.factory("getAllPosts",function($http,loginToken)
                 {
                   return $http.put('/api/declike/'+id,likeDetails); 
                 };
+                getAllPostsFactory.saveAndIncCommentCount=function(id,commentDetails)
+                {
+                  return $http.put('/api/saveandinccomment/'+id,commentDetails);
+                };
+                getAllPostsFactory.getLikesInfo=function(id)
+                {
+                  return $http.get('/api/likes/'+id);
+                };
+                getAllPostsFactory.getCommentsInfo=function(id)
+                {
+                  return $http.get('/api/comments/'+id);
+                };
                getAllPostsFactory.getMyBlogs=function(email)
                  {
                        return $http.get('/api/my/'+email);
@@ -146,9 +136,9 @@ blgapp.factory("saveNewBlog",function($http)
                };
                return saveNewBlogFactory;
              });
-blgapp.factory("retrieveBlogToEdit",function()
-               {
-                 var retrieveBlogToEditFactory={};
+blgapp.factory("editBlog",function($http)
+               { var editBlogFactory={};
+                /* var retrieveBlogToEditFactory={};
                  var blogToEdit;
                  retrieveBlogToEditFactory.sendBlogToEdit=function(blog)
                  {
@@ -157,134 +147,18 @@ blgapp.factory("retrieveBlogToEdit",function()
                  retrieveBlogToEditFactory.getBlogToEdit=function()
                  {
                      return blogToEdit;
+                 };*/
+                 editBlogFactory.updateAndSaveBlog=function(id,blog)
+                 {
+                  return $http.put('/api/edit/'+id,blog);
                  };
-                 return retrieveBlogToEditFactory;
+                 return editBlogFactory;
                });
-/*blgapp.factory("sendEmail",function($http,$q)
-              {
-                 return{
-                  postEmail:function(email)
-                 {var object;
-                  var data={"data":email};
-                  var defered=$q.defer();
-                  $http.post('frgt',data)
-                  .success(function(data)
-                    {object=data;
-                     defered.resolve(object);
-                    })
-                 .error(function(err)
-                    {defered.reject('no data found');
-                      
-                    });
-                   return defered.promise;
-                 }
-                 }
-              });
-blgapp.factory("sendNewPassword",function($http,$q)
-              { return{
-                  saveNewPswd:function(user)
-                 {var object;
-                  var data={"data":user};
-                  var defered=$q.defer();
-                  $http.post('newpswd',data)
-                  .success(function(data)
-                    {object=data;
-                     defered.resolve(object);
-                    })
-                 .error(function(err)
-                    {defered.reject('no data found');
-                      
-                    });
-                   return defered.promise;
-                 }
-              }
-              });
-blgapp.factory("getData",function($http)
-               {return{
-                 loadData:function()
-                 {var object;
-                  object=$http.get('info')
-                           .then(function(response)
-                           {
-                             object=response.data;
-                           });
-                  return object;
-                     
-                 }
-               }
-blgapp.factory("searchData",function($http,$q)
-               {return{
-                 getSearchData:function(searchemail)
-                   { var object;
-                  var defered=$q.defer();
-                  $http.get('script/controllers/mybogjson.json')
-                  .success(function(data)
-                    {object=data;
-                     defered.resolve(object);
-                    })
-                 .error(function(err)
-                    {defered.reject('no data found');
-                      
-                    });
-                   return defered.promise;
-                  }
-                 }
-               });
-            
-blgapp.factory("saveNewPost",function($http,$q)
-               {return{
-                 postData:function(user)
-                   { var object;
-                  var data={"data":user};
-                  var defered=$q.defer();
-                  $http.post('login',data)
-                  .success(function(data)
-                    {object=data;
-                     defered.resolve(object);
-                    })
-                 .error(function(err)
-                    {defered.reject('no data found');
-                      
-                    });
-                   return defered.promise;
-                  }
-                 }
-               });
-blgapp.factory("saveLikeDetail",function($http,$q)
-               {return{
-                 likeData:function(user)
-                   { var object;
-                  var data={"data":user};
-                  var defered=$q.defer();
-                  $http.post('login',data)
-                  .success(function(data)
-                    {object=data;
-                     defered.resolve(object);
-                    })
-                 .error(function(err)
-                    {defered.reject('no data found');
-                      
-                    });
-                   return defered.promise;
-                  }
-                 }
-               });
-blgapp.factory("saveCommentDetail",function($http,$q)
-               {return{
-                 commentData:function(user)
-                   { var object;
-                  var data={"data":user};
-                  var defered=$q.defer();
-                  $http.post('login',data)
-                  .success(function(data)
-                    {object=data;
-                     defered.resolve(object);
-                    })
-                 .error(function(err)
-                    {defered.reject('no data found');
-                      
-                    });
-                   return defered.promise;
-                  }
-                 }
-               });*/
+blgapp.factory("getSearchedBlogs",function($http)
+              { var getSearchedBlogsFactory={};
+               getSearchedBlogsFactory.getBlogBySearchedEmail=function(email)
+               {
+                return $http.get('/api/search/'+email);
+               };
+               return getSearchedBlogsFactory;
+              } );            

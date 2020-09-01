@@ -1,10 +1,10 @@
- blgapp.config(function($stateProvider)
+ blgapp.config(function($stateProvider,$urlRouterProvider)
                           { 
                             $stateProvider.caseInsensitiveMatch=true;
-                            
+                           $urlRouterProvider.otherwise('/login');
                              $stateProvider
                               .state('login',{
-                                url:'',
+                                url:'/login',
                               templateUrl:'/views/login.html',
                               controller:'logincont'
                              })
@@ -23,6 +23,7 @@
                           })
                           $stateProvider
                               .state('home',{
+                                url:'/home',
                                 redirectTo:'home.allposts',
                               
                               templateUrl:'/views/home.html',
@@ -35,14 +36,7 @@
                               controller:'allblogscont'
                                
                           })
-                              $stateProvider
-                              .state('home.searchpost',{
-                                     url:'/searchpost',
-                              templateUrl:'/views/searchpost.html',
-                             controller:'homecontroller'
-            
-                          })
-                            $stateProvider
+                           $stateProvider
                               .state('home.createpost',{
                                url:'/createpost',
                               templateUrl:'/views/createpost.html',
@@ -62,57 +56,20 @@
                                    params:{
                                               blog:null
                                             },
-                              /*resolve:{
-                                       blogObject:function($stateParams)
-                                        {
-                                            return{
-                                                
-                                                   blog:$stateParams.blog
-                                                }
-                                        }
-                                      },*/
                               templateUrl:'/views/editblog.html',
                              controller:'editblogcont'
                              
+                          })
+                          $stateProvider
+                             .state('home.search',{
+                              url:'/searchBlog',
+                               params:{
+                                              semail:null
+                                            },
+                              templateUrl:'/views/searchpost.html',
+                              controller:'searchblogcont'
+                               
                           });
+                          
  
         });
- /*blgapp.run(function($rootScope, $state, loginToServer) {
-            console.log("hi");
-          $transitions.onStart({}, function(transition) {
-            console.log("hi");
-          });*/
-           /* $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-                console.log(loginToServer.isLoggedIn());
-            if (!loginToServer.isLoggedIn()&& _.has(toState, 'data.authorization') && _.has(toState, 'data.redirectTo')) {
-                 $state.go(toState.data.redirectTo);
-    }
-  });*/
-/*});*/
-/*blgapp.run(['$rootScope','loginToServer','$state',function($rootScope,loginToServer,$state)
-        { console.log("hii:");
-           $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams)
-           { console.log("hii:"+toState.authenticated);
-            
-                  
-               if(toState.authenticated==true)
-               {
-                   if(!loginToServer.isLoggedIn())
-                    {
-                        event.preventDefault();
-                        $state.go('login');*/
-                       /* $location.path('');*/
-                        
-              /*      }
-               }
-               else if(toState.authenticated==false)
-               {
-                   if(loginToServer.isLoggedIn())
-                    {
-                        event.preventDefault();
-                       $state.go('home');*/
-                      /*  $location.path('/allposts');*/
-                 /*   }
-               }
-           }); 
-        }]);*/

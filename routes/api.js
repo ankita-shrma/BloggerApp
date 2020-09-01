@@ -111,7 +111,7 @@ module.exports=function(router)
       {
         blogmodel.update({email:req.body.email},
                 {$push: {posts:{title:req.body.title,uploadPostContent:req.body.content,likeCount:0,
-                                       countComment:0}}}
+                                       countComment:0,likeBtnText:"Like",date:new Date()}}}
               ).then(function(succ,err)
                   {if(err)
                      {  console.log(err);
@@ -127,27 +127,7 @@ module.exports=function(router)
       {
         res.json({success:false,message:'ensure title and content of blog were provided'});
       }
-  /*     blogmodel.findOne({email:req.body.email}).then(function(user,err)
-       {   if(err) throw err;
-          else if(req.body.title && req.body.content)
-           {
-               user.posts.push({title:req.body.title,uploadPostContent:req.body.content,likeCount:0,
-                                       countComment:0});
-               console.log(user);
-               user.save(function(err)
-                             { if(err)
-                                {console.log(err);
-                                res.json({success:false,message:'failed to create new blog'});}
-                               else
-                               res.json({success:true,message:'New blog created'});
-                              });
-                
-           }
-           else
-            {
-                res.json({success:false,message:'ensure title and content of blog were provided'});
-            }
-       });*/
+ 
     });
     router.get('/all',function(req,res)
     {    console.log('in server side');
@@ -165,6 +145,48 @@ module.exports=function(router)
            res.json(docs);}
        });
     });
+    router.get('/search/:email',function(req,res)
+    {    console.log(req.params.email);
+      blogmodel.find({email:req.params.email},function(err,docs)
+      {if(err) 
+      {
+         res.json(err);
+      }
+        else{console.log("searchedblogs"+docs);              
+           res.json(docs);}
+       });
+    });
+    router.get('/likes/:id',function(req,res)
+    {
+      console.log(req.params.id);
+      blogmodel.find({"posts._id":req.params.id},{"posts._id":1,"posts.likes":1},function(err,docs)
+      {if(err)
+        {
+          res.json(err);
+        }
+        else
+        {
+          console.log("likesinfo"+docs);              
+          res.json(docs);
+        }
+      });
+    });
+    router.get('/comments/:id',function(req,res)
+    {
+      console.log(req.params.id);
+      blogmodel.find({"posts._id":req.params.id},{"posts._id":1,"posts.comments":1},function(err,docs)
+      {if(err)
+        {
+          res.json(err);
+        }
+        else
+        {
+          console.log("commentsinfo"+docs);              
+          res.json(docs);
+        }
+      });
+    });
+    
     router.put('/inclike/:id',function(req,res)
    {
      console.log(req.params.id);
@@ -182,7 +204,25 @@ module.exports=function(router)
           res.json({success:true,message:'successfully liked'});
       }
     });
-     
+  });
+    router.put('/saveandinccomment/:id',function(req,res)
+    {
+      console.log(req.params.id);
+      console.log(req.body);
+     blogmodel.update({email:req.body.email,"posts._id":req.params.id},
+                 {$push: {"posts.$.comments":{email :req.body.myemail,content:req.body.comment}},
+                 $inc :{"posts.$.countComment":1}}
+               ).then(function(succ,err)
+     {if(err)
+       {
+           res.json({success:false,message:'failed to comment'});
+       }
+       else
+       {
+           res.json({success:true,message:'successfully commented'});
+       }
+     });
+    });
  /*    blogmodel.findOne({email:req.body.email}).then(function(user,err)
      {
       if(err) throw err;
@@ -196,7 +236,7 @@ module.exports=function(router)
 
          
      });*/
-  });
+  
   router.put('/declike/:id',function(req,res)
   {console.log(req.params.id);
      console.log(req.body);
@@ -232,22 +272,25 @@ module.exports=function(router)
                                 }
                                });
   });
-   /*router.put('/edit/:id',function(req,res)
-   {
-     console.log(req.params.id);
-     console.log(req.body);
-    blogmodel.update({email:req.body.email,"posts._id":req.params.id},
-                {$set:{"posts.$.title":req.body.title,"posts.$.uploadPostContent":req.body.uploadPostContent}}
-              ).then(function(succ,err)
-    {if(err)
-      {
-          res.json({success:false,message:'failed to like'});
-      }
-      else
-      {
-          res.json({success:true,message:'successfully liked'});
-      }
-    });*/
+  router.put('/edit/:id',function(req,res)
+  {
+    console.log(req.params.id);
+    console.log(req.body);
+    blogmodel.update({"posts._id":req.params.id},
+                     {
+                       $set:{"posts.$.title":req.body.title,"posts.$.uploadPostContent":req.body.uploadPostContent}
+                     }).then(function(succ,err)
+                     {if(err)
+                       {
+                           res.json({success:false,message:'failed to edit'});
+                       }
+                       else
+                       {
+                           res.json({success:true,message:'successfully edited'});
+                       }
+                     });
+  });
+  
     return router;
 }
 

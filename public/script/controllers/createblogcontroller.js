@@ -17,8 +17,7 @@ blgapp.controller('createblogcont',function($scope,$state,loginToServer,getAllPo
                   console.log($scope.blog);
                    saveNewBlog.postNewBlog($scope.blog).then(function(data)
                            {   
-                             /*$scope.blog.title=" ";
-                             $scope.blog.content=" ";*/
+                             
                              if(data.data.success)
                               {
                                   $scope.successMsg=data.data.message;
